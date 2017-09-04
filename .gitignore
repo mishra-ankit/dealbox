@@ -1,0 +1,13 @@
+node_modules
+dist/
+.tmp
+app.yaml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/jsLinters/jslint.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/web-starter-kit-0.6.5.iml
+/.idea/workspace.xml
+/docs
