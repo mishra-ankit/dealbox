@@ -81,4 +81,60 @@
     })
   }
 
+  /**
+   * Created by Ram on 05-Sep-17.
+   */
+  angular.module('app', [])
+  // .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+  //   $routeProvider.when('/users', {
+  //     templateUrl: 'users.html',
+  //     controller: 'UserCtrl'
+  //   });
+  //
+  //   $routeProvider.when('/users/:id', {
+  //     templateUrl: 'user.html',
+  //     controller: 'UserCtrl'
+  //   });
+  //
+  //   $routeProvider.otherwise({redirectTo: '/users'});
+  // }]);
+
+  angular.module('app')
+    .controller('UserCtrl', ["$http", "$scope", "$timeout", function ($http, $scope, $timeout) {
+
+      var id = null;
+      var apiRoot = "https://dnbapistore.com/hackathon";
+      var userObj;
+
+      $http({
+        method: 'GET',
+        url: apiRoot + "/banks/1.0/bank/atm/zip/0367",
+        headers: {'Authorization': 'Bearer 67e6636a-75d1-3c01-8742-617f7a32ce3d'}
+      })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        })
+
+      $scope.isLoggedIn = function () {
+        return ($scope.userObj && $scope.userObj.id);
+      };
+
+      $scope.logIn = function () {
+        $scope.showLoading = true;
+        if ($scope.id && $scope.pin) {
+          $scope.userObj = {
+            id: $scope.id
+          }
+        }
+
+        $timeout(function () {
+          $scope.showLoading = false;
+        }, 2000);
+      };
+
+    }]);
+
 })();

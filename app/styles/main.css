@@ -248,9 +248,17 @@ html, body {
   position: absolute;
 }
 
-
 .dp48-r {
   font-size: 48px;
   width: 48px;
   height: 48px;
 }
+
+/*.mdl-layout {*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+/*}*/
+/*.mdl-layout__content {*/
+  /*padding: 24px;*/
+  /*flex: none;*/
+/*}*/

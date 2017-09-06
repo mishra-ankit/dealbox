@@ -53,7 +53,42 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base" ng-controller="UserCtrl">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+    <div ng-show="!isLoggedIn()" class="mdl-layout mdl-js-layout mdl-color--grey-100">
+    <main class="mdl-layout__content">
+      <div class="mdl-card mdl-shadow--6dp" style="width: 100%">
+        <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+          <h2 class="mdl-card__title-text">DealBox</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="username" ng-model="id" />
+              <label class="mdl-textfield__label" for="username">BankID</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="password" id="userpass" ng-model="pin" />
+              <label class="mdl-textfield__label" for="userpass">Bank PIN</label>
+            </div>
+          </form>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <button ng-click="logIn()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Log in</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+    <div ng-show="showLoading"class="mdl-layout mdl-js-layout mdl-color--grey-100">
+      <main class="mdl-layout__content">
+        <div style="text-align: center;">
+          <div class="mdl-spinner mdl-js-spinner is-active" style="margin: 20px;"></div>
+          <h5>Loading awesomeness....</h5>
+        </div>
+      </main>
+    </div>
+
+    <div ng-show="!showLoading && isLoggedIn()" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
           <a href="#mydeals" class="mdl-layout__tab is-active">For me</a>
@@ -169,8 +204,9 @@
         </div>
       </footer>
     </div>
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
-    <script src="scripts/app.js"></script>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
     <!-- build:js scripts/main.min.js -->
     <script src="scripts/main.js"></script>
