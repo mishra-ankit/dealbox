@@ -136,9 +136,10 @@
         }
 
         //Fetch relevant deals.
-        $http.get("https://www.mocky.io/v2/59b02eeb100000ba06db2138")
+        $http.get("https://mockbin.org/bin/b4ae1d0e-c985-42f2-8f2f-47bbbf14cb70")
           .then(function (response) {
             // TODO : Filter only personalized deals.
+            $scope.allDeals = response.data;
             $scope.deals = response.data.filter(function (deal) {
               return ($scope.userObj.interestList.indexOf(deal.category) > -1);
             });
@@ -149,7 +150,7 @@
 
         $timeout(function () {
           $scope.showLoading = false;
-        }, 1000);
+        }, 2000);
       };
 
       var LIST = 'list', DETAILS = 'details';

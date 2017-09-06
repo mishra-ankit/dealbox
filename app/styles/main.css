@@ -292,7 +292,7 @@ html, body {
 }
 
 .mdl-card--expand img {
-  height: 185px;
+  height: 200px;
 }
 
 .demo-card-square .mdl-card__title-text{
@@ -309,4 +309,14 @@ html, body {
 
 .detail .demo-card-square img {
   height: 200px;
+}
+
+.demo-card-square {
+  width: 100%;
+}
+
+.mdl-layout__tab-panel.is-active {
+  border-left: 1px solid lawngreen;
+  border-right: 1px solid lawngreen;
+  font-weight: 600;
 }
