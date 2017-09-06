@@ -99,6 +99,19 @@
       var id = null;
       var apiRoot = "https://dnbapistore.com/hackathon";
       var userObj;
+      var dialog = document.querySelector('dialog');
+
+      var USER_DB = {
+        'mukesh': {
+          interestList: ['Sport', 'Restaurent']
+        },
+        'mai': {
+          interestList: ['Kitchen / Interior', 'Electronic']
+        },
+        'ankit': {
+          interestList: ['Flower / Gardening']
+        }
+      };
 
       $http({
         method: 'GET',
@@ -113,30 +126,31 @@
         })
 
       $scope.isLoggedIn = function () {
-        return ($scope.userObj && $scope.userObj.id);
+        return ($scope.userObj);
       };
 
       $scope.logIn = function () {
         $scope.showLoading = true;
-        if ($scope.id && $scope.pin) {
-          $scope.userObj = {
-            id: $scope.id
-          }
+        if ($scope.id && $scope.pin && USER_DB[$scope.id]) {
+          $scope.userObj = USER_DB[$scope.id];
         }
+
+        //Fetch relevant deals.
+        $http.get("http://www.mocky.io/v2/59affc44100000bd04db20bc")
+          .then(function (response) {
+            // TODO : Filter only personalized deals.
+            $scope.deals = response.data.filter(function (deal) {
+              return ($scope.userObj.interestList.indexOf(deal.category) > -1);
+            });
+          })
+          .catch(function (response) {
+            alert("Error is fetching deals.");
+          });
 
         $timeout(function () {
           $scope.showLoading = false;
-        }, 2);
+        }, 1000);
       };
-
-      //Fetch relevant deals.
-      $http.get("http://www.mocky.io/v2/59affc44100000bd04db20bc")
-        .then(function (response) {
-          $scope.deals = response.data;
-        })
-        .catch(function (response) {
-          alert("Error is fetching deals.");
-        });
 
       var LIST = 'list', DETAILS = 'details';
       $scope.appState = LIST;
@@ -169,8 +183,18 @@
 
       $scope.buy = function () {
         // TODO : Remove from main list.
-        $scope.currentDeal.bought = true;
-        $scope.boughtDeals.push($scope.currentDeal);
+        dialog.showModal();
       };
+
+      dialog.querySelector('.close').addEventListener('click', function () {
+        dialog.close();
+      });
+
+      dialog.querySelector('.done').addEventListener('click', function () {
+        dialog.close();
+        $scope.currentDeal.bought = true;
+        // TODO : Do transaction using
+        $scope.boughtDeals.push($scope.currentDeal);
+      });
     }]);
 })();

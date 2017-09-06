@@ -83,7 +83,7 @@
       <main class="mdl-layout__content">
         <div style="text-align: center;">
           <div class="mdl-spinner mdl-js-spinner is-active" style="margin: 20px;"></div>
-          <h5>Loading awesomeness....</h5>
+          <h5>Getting deals for you....</h5>
         </div>
       </main>
     </div>
@@ -116,7 +116,7 @@
           </div>
         </div>
 
-        <div class="mdl-layout__tab-panel is-active" id="all">
+        <div class="mdl-layout__tab-panel" id="all">
           <!-- Square card -->
           <div class="demo-card-square mdl-card mdl-shadow--2dp" ng-repeat="deal in deals" ng-click="goTo(deal)">
             <div class="mdl-card__title mdl-card--expand">
@@ -133,7 +133,7 @@
           </div>
         </div>
 
-        <div class="mdl-layout__tab-panel is-active" id="history">
+        <div class="mdl-layout__tab-panel" id="history">
           <!-- Square card -->
           <div class="demo-card-square mdl-card mdl-shadow--2dp" ng-repeat="deal in boughtDeals" ng-click="goTo(deal)">
             <div class="mdl-card__title mdl-card--expand">
@@ -177,10 +177,10 @@
           </div>
           <div class="mdl-card__supporting-text">
             {{currentDeal.desc}}
-
+            <br><br>
             <strong>Email -</strong>
-            <p>{{currentDeal.desc}}</p>
-
+            <p>{{currentDeal.email}}</p>
+            <br>
             <strong>Address -</strong>
             <p>{{currentDeal.address}}</p>
 
@@ -193,9 +193,8 @@
         <!-- Footer Content -->
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
           <div class="mdl-tabs__tab-bar">
-            <span class="expiry">{{currentDeal.expiry_date}}</span>
-            <strong class="price">
-              <span class="old-price">{{currentDeal.real_price}} kr</span> {{currentDeal.deal_price}} kr</strong>
+            <!--<span class="expiry">Expires :{{currentDeal.expiry_date}}</span>-->
+            <strong class="price">{{currentDeal.deal_price}} kr</strong>
             <button ng-show="!currentDeal.bought" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" ng-click="buy()">
               Buy Now
             </button>
@@ -211,6 +210,17 @@
       <div class="mdl-snackbar__text"></div>
       <button class="mdl-snackbar__action" type="button"></button>
     </div>
+
+    <dialog class="mdl-dialog">
+      <h4 class="mdl-dialog__title"></h4>
+      <div class="mdl-dialog__content">
+        <p>Please confirm the payment ?</p>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button done">Confirm</button>
+        <button type="button" class="mdl-button close">Close</button>
+      </div>
+    </dialog>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
