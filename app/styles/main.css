@@ -315,8 +315,8 @@ html, body {
   width: 100%;
 }
 
-.mdl-layout__tab-panel.is-active {
-  border-left: 1px solid lawngreen;
-  border-right: 1px solid lawngreen;
+.mdl-layout__tab.is-active {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   font-weight: 600;
 }
