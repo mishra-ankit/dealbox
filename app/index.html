@@ -88,108 +88,66 @@
       </main>
     </div>
 
-    <div ng-show="!showLoading && isLoggedIn()" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <div ng-show="(appState === 'list') && !showLoading && isLoggedIn()" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
           <a href="#mydeals" class="mdl-layout__tab is-active">For me</a>
-          <a href="#features" class="mdl-layout__tab">All</a>
-          <a href="#mydeals" class="mdl-layout__tab">Friends Deals</a>
-          <a href="#mydeals" class="mdl-layout__tab">Near Me</a>
-          <a href="#mydeals" class="mdl-layout__tab">My Deals</a>
+          <a href="#near" class="mdl-layout__tab">Near Me</a>
+          <a href="#history" class="mdl-layout__tab">My Deals</a>
+          <a href="#friends" class="mdl-layout__tab">Friends Deals</a>
         </div>
       </header>
       <main class="mdl-layout__content">
 
         <div class="mdl-layout__tab-panel is-active" id="mydeals">
           <!-- Square card -->
-          <div class="demo-card-square mdl-card mdl-shadow--2dp">
+          <div class="demo-card-square mdl-card mdl-shadow--2dp" ng-repeat="deal in deals" ng-click="goTo(deal)">
             <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">Deal Name</h2>
+              <h2 class="mdl-card__title-text">{{deal.deal_title}}</h2>
             </div>
             <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="item.html">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                 Show More
               </a>
-              <strong class="price"><span class="old-price">500 kr</span> 249 kr</strong>
+              <span class="expiry">{{deal.expiry_date}}</span>
+              <strong class="price">
+                <span class="old-price">{{deal.real_price}} kr</span> {{deal.deal_price}} kr</strong>
             </div>
           </div>
-
-          <div class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">Deal Name</h2>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="item.html">
-                Show More
-              </a>
-              <strong class="price"><span class="old-price">500 kr</span> 249 kr</strong>
-            </div>
-          </div>
-
-          <div class="demo-card-square mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">Deal Name</h2>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="item.html">
-                Show More
-              </a>
-              <strong class="price"><span class="old-price">500 kr</span> 249 kr</strong>
-            </div>
-          </div>
-
         </div>
 
-
-        <div class="mdl-layout__tab-panel" id="features">
-          <section class="section--center mdl-grid mdl-grid--no-spacing">
-            <div class="mdl-cell mdl-cell--12-col">
-              <h4>Features</h4>
-              Minim duis incididunt est cillum est ex occaecat consectetur. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
-              <ul>
-                <li ng-repeat="user in users">{{user.id}}</li>
-              </ul>
-
-              <h5 id="lorem1">Lorem ipsum dolor sit amet</h5>
-              Excepteur et pariatur officia veniam anim culpa cupidatat consequat ad velit culpa est non.
-              <ul>
-                <li>Nisi qui nisi duis commodo duis reprehenderit consequat velit aliquip.</li>
-                <li>Dolor consectetur incididunt in ipsum laborum non et irure pariatur excepteur anim occaecat officia sint.</li>
-                <li>Lorem labore proident officia excepteur do.</li>
-              </ul>
-
-              <p>
-                Sit qui est voluptate proident minim cillum in aliquip cupidatat labore pariatur id tempor id. Proident occaecat occaecat sint mollit tempor duis dolor cillum anim. Dolore sunt ea mollit fugiat in aliqua consequat nostrud aliqua ut irure in dolore. Proident aliqua culpa sint sint exercitation. Non proident occaecat reprehenderit veniam et proident dolor id culpa ea tempor do dolor. Nulla adipisicing qui fugiat id dolor. Nostrud magna voluptate irure veniam veniam labore ipsum deserunt adipisicing laboris amet eu irure. Sunt dolore nisi velit sit id. Nostrud voluptate labore proident cupidatat enim amet Lorem officia magna excepteur occaecat eu qui. Exercitation culpa deserunt non et tempor et non.
-              </p>
-              <p>
-                Do dolor eiusmod eu mollit dolore nostrud deserunt cillum irure esse sint irure fugiat exercitation. Magna sit voluptate id in tempor elit veniam enim cupidatat ea labore elit. Aliqua pariatur eu nulla labore magna dolore mollit occaecat sint commodo culpa. Eu non minim duis pariatur Lorem quis exercitation. Sunt qui ex incididunt sit anim incididunt sit elit ad officia id.
-              </p>
-              <p id="lorem2">
-                Tempor voluptate ex consequat fugiat aliqua. Do sit et reprehenderit culpa deserunt culpa. Excepteur quis minim mollit irure nulla excepteur enim quis in laborum. Aliqua elit voluptate ad deserunt nulla reprehenderit adipisicing sint. Est in eiusmod exercitation esse commodo. Ea reprehenderit exercitation veniam adipisicing minim nostrud. Veniam dolore ex ea occaecat non enim minim id ut aliqua adipisicing ad. Occaecat excepteur aliqua tempor cupidatat aute dolore deserunt ipsum qui incididunt aliqua occaecat sit quis. Culpa sint aliqua aliqua reprehenderit veniam irure fugiat ea ad.
-              </p>
-              <p>
-                Eu minim fugiat laborum irure veniam Lorem aliqua enim. Aliqua veniam incididunt consequat irure consequat tempor do nisi deserunt. Elit dolore ad quis consectetur sint laborum anim magna do nostrud amet. Ea nulla sit consequat quis qui irure dolor. Sint deserunt excepteur consectetur magna irure. Dolor tempor exercitation dolore pariatur incididunt ut laboris fugiat ipsum sunt veniam aute sunt labore. Non dolore sit nostrud eu ad excepteur cillum eu ex Lorem duis.
-              </p>
-              <p>
-                Id occaecat velit non ipsum occaecat aliqua quis ut. Eiusmod est magna non esse est ex incididunt aute ullamco. Cillum excepteur sint ipsum qui quis velit incididunt amet. Qui deserunt anim enim laborum cillum reprehenderit duis mollit amet ad officia enim. Minim sint et quis aliqua aliqua do minim officia dolor deserunt ipsum laboris. Nulla nisi voluptate consectetur est voluptate et amet. Occaecat ut quis adipisicing ad enim. Magna est magna sit duis proident veniam reprehenderit fugiat reprehenderit enim velit ex. Ullamco laboris culpa irure aliquip ad Lorem consequat veniam ad ipsum eu. Ipsum culpa dolore sunt officia laborum quis.
-              </p>
-
-              <h5 id="lorem3">Lorem ipsum dolor sit amet</h5>
-
-              <p id="lorem4">
-                Eiusmod nulla aliquip ipsum reprehenderit nostrud non excepteur mollit amet esse est est dolor. Dolore quis pariatur sit consectetur veniam esse ullamco duis Lorem qui enim ut veniam. Officia deserunt minim duis laborum dolor in velit pariatur commodo ullamco eu. Aute adipisicing ad duis labore laboris do mollit dolor cillum sunt aliqua ullamco. Esse tempor quis cillum consequat reprehenderit. Adipisicing proident anim eu sint elit aliqua anim dolore cupidatat fugiat aliquip qui.
-              </p>
-              <p id="lorem5">
-                Nisi eiusmod esse cupidatat excepteur exercitation ipsum reprehenderit nostrud deserunt aliqua ullamco. Anim est irure commodo eiusmod pariatur officia. Est dolor ipsum excepteur magna aliqua ad veniam irure qui occaecat eiusmod aute fugiat commodo. Quis mollit incididunt amet sit minim velit eu fugiat voluptate excepteur. Sit minim id pariatur ex cupidatat cupidatat nostrud nostrud ipsum.
-              </p>
-              <p>
-                Enim ea officia excepteur ad veniam id reprehenderit eiusmod esse mollit consequat. Esse non aute ullamco Lorem aliqua qui dolore irure eiusmod aute aliqua proident labore aliqua. Ipsum voluptate voluptate exercitation laborum deserunt nulla elit aliquip et minim ex veniam. Duis cupidatat aute sunt officia mollit dolor ad elit ad aute labore nostrud duis pariatur. In est sint voluptate consectetur velit ea non labore. Ut duis ea aliqua consequat nulla laboris fugiat aute id culpa proident. Minim eiusmod laboris enim Lorem nisi excepteur mollit voluptate enim labore reprehenderit officia mollit.
-              </p>
-              <p>
-                Cupidatat labore nisi ut sunt voluptate quis sunt qui ad Lorem esse nisi. Ex esse velit ullamco incididunt occaecat dolore veniam tempor minim adipisicing amet. Consequat in exercitation est elit anim consequat cillum sint labore cillum. Aliquip mollit laboris ad labore anim.
-              </p>
+        <div class="mdl-layout__tab-panel is-active" id="all">
+          <!-- Square card -->
+          <div class="demo-card-square mdl-card mdl-shadow--2dp" ng-repeat="deal in deals" ng-click="goTo(deal)">
+            <div class="mdl-card__title mdl-card--expand">
+              <h2 class="mdl-card__title-text">{{deal.deal_title}}</h2>
             </div>
-          </section>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Show More
+              </a>
+              <span class="expiry">{{deal.expiry_date}}</span>
+              <strong class="price">
+                <span class="old-price">{{deal.real_price}} kr</span> {{deal.deal_price}} kr</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdl-layout__tab-panel is-active" id="history">
+          <!-- Square card -->
+          <div class="demo-card-square mdl-card mdl-shadow--2dp" ng-repeat="deal in boughtDeals" ng-click="goTo(deal)">
+            <div class="mdl-card__title mdl-card--expand">
+              <h2 class="mdl-card__title-text">{{deal.deal_title}}</h2>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                Show More
+              </a>
+              <span class="expiry">{{deal.expiry_date}}</span>
+              <strong class="price">
+                <span class="old-price">{{deal.real_price}} kr</span> {{deal.deal_price}} kr</strong>
+            </div>
+          </div>
         </div>
       </main>
 
@@ -205,6 +163,54 @@
       </footer>
     </div>
 
+    <div ng-show="appState === 'details'" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <a ng-click="goTo('list')"><i class="material-icons dp48">keyboard_arrow_left </i></a>
+        <i ng-show="!currentDeal.isFav" class="material-icons dp48" style="right: 50px;" ng-click="addToFav(currentDeal)">favorite_border</i>
+        <i ng-show="currentDeal.isFav" class="material-icons dp48" style="right: 50px;" ng-click="removeFav(currentDeal)">favorite</i>
+        <i onclick="share()" class="material-icons dp48" style="right: 0px;">share</i>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="demo-card-square">
+          <div class="mdl-card__title mdl-card--expand" style="height: 150px;">
+            <h2 class="mdl-card__title-text">{{currentDeal.deal_title}}</h2>
+          </div>
+          <div class="mdl-card__supporting-text">
+            {{currentDeal.desc}}
+
+            <strong>Email -</strong>
+            <p>{{currentDeal.desc}}</p>
+
+            <strong>Address -</strong>
+            <p>{{currentDeal.address}}</p>
+
+            <img src="images/assets/map.PNG" alt="">
+          </div>
+        </div>
+      </main>
+
+      <footer class="">
+        <!-- Footer Content -->
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+          <div class="mdl-tabs__tab-bar">
+            <span class="expiry">{{currentDeal.expiry_date}}</span>
+            <strong class="price">
+              <span class="old-price">{{currentDeal.real_price}} kr</span> {{currentDeal.deal_price}} kr</strong>
+            <button ng-show="!currentDeal.bought" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" ng-click="buy()">
+              Buy Now
+            </button>
+            <button ng-show="currentDeal.bought" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored mdl-button--raised" ng-click="useDeal()">
+              Use Now
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
     <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>

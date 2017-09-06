@@ -90,18 +90,12 @@
   //     templateUrl: 'users.html',
   //     controller: 'UserCtrl'
   //   });
-  //
-  //   $routeProvider.when('/users/:id', {
-  //     templateUrl: 'user.html',
-  //     controller: 'UserCtrl'
-  //   });
-  //
   //   $routeProvider.otherwise({redirectTo: '/users'});
   // }]);
 
   angular.module('app')
     .controller('UserCtrl', ["$http", "$scope", "$timeout", function ($http, $scope, $timeout) {
-
+      var snackbarContainer = document.querySelector('#demo-toast-example');
       var id = null;
       var apiRoot = "https://dnbapistore.com/hackathon";
       var userObj;
@@ -132,9 +126,51 @@
 
         $timeout(function () {
           $scope.showLoading = false;
-        }, 2000);
+        }, 2);
       };
 
-    }]);
+      //Fetch relevant deals.
+      $http.get("http://www.mocky.io/v2/59affc44100000bd04db20bc")
+        .then(function (response) {
+          $scope.deals = response.data;
+        })
+        .catch(function (response) {
+          alert("Error is fetching deals.");
+        });
 
+      var LIST = 'list', DETAILS = 'details';
+      $scope.appState = LIST;
+
+      $scope.goTo = function (deal) {
+        $scope.appState = DETAILS;
+        $scope.currentDeal = deal;
+        if (deal === LIST) {
+          $scope.appState = LIST;
+        }
+      };
+
+      $scope.favList = [];
+
+      $scope.addToFav = function (deal) {
+        deal.isFav = true;
+        $scope.favList.push(deal);
+        var data = {message: 'Added to favourites!'};
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      };
+
+      $scope.removeFav = function (deal) {
+        deal.isFav = false;
+        // TODO : Actual remove from array.
+        var data = {message: 'Removed from favourites!'};
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      };
+
+      $scope.boughtDeals = [];
+
+      $scope.buy = function () {
+        // TODO : Remove from main list.
+        $scope.currentDeal.bought = true;
+        $scope.boughtDeals.push($scope.currentDeal);
+      };
+    }]);
 })();

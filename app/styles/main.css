@@ -262,3 +262,18 @@ html, body {
   /*padding: 24px;*/
   /*flex: none;*/
 /*}*/
+
+
+.expiry {
+  background: lightgray;
+  padding: 5px;
+  color: black;
+  float: left;
+  margin-top: 5px;
+}
+
+.mdl-tabs__tab-bar {
+  background: white;
+  box-shadow: -1px 1px 3px 3px rgba(0, 0, 0, 0.45);
+  padding-top: 5px;
+}
