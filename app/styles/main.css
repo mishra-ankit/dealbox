@@ -218,8 +218,6 @@ html, body {
 
 .demo-card-square > .mdl-card__title {
   color: #fff;
-  background:
-    url('http://via.placeholder.com/350x150') bottom right 15% no-repeat #46B6AC;
 }
 
 .price {
@@ -276,4 +274,39 @@ html, body {
   background: white;
   box-shadow: -1px 1px 3px 3px rgba(0, 0, 0, 0.45);
   padding-top: 5px;
+}
+
+.buy-button {
+  position: absolute;
+  right: 10px;
+  margin-top: 5px;
+}
+
+.price-buy {
+  position: absolute;
+  margin-top: 5px;
+}
+
+.mdl-card--expand {
+  padding: 0;
+}
+
+.mdl-card--expand img {
+  height: 185px;
+}
+
+.demo-card-square .mdl-card__title-text{
+  position: absolute;
+  background: rgba(0,0,0,.6);
+  width: 100%;
+  padding: 2px;
+}
+
+
+.mdl-card__supporting-text {
+  background: #fff;
+}
+
+.detail .demo-card-square img {
+  height: 200px;
 }

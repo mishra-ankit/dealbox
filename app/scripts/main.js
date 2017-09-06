@@ -136,7 +136,7 @@
         }
 
         //Fetch relevant deals.
-        $http.get("https://www.mocky.io/v2/59affc44100000bd04db20bc")
+        $http.get("https://www.mocky.io/v2/59b02eeb100000ba06db2138")
           .then(function (response) {
             // TODO : Filter only personalized deals.
             $scope.deals = response.data.filter(function (deal) {
@@ -192,9 +192,11 @@
 
       dialog.querySelector('.done').addEventListener('click', function () {
         dialog.close();
-        $scope.currentDeal.bought = true;
-        // TODO : Do transaction using
-        $scope.boughtDeals.push($scope.currentDeal);
+        $timeout(function () {
+          $scope.currentDeal.bought = true;
+          // TODO : Do transaction using
+          $scope.boughtDeals.push($scope.currentDeal);
+        }, 1);
       });
     }]);
 })();
