@@ -101,6 +101,8 @@
       var userObj;
       var dialog = document.querySelector('dialog');
 
+      var token = '67e6636a-75d1-3c01-8742-617f7a32ce3d';
+
       var USER_DB = {
         'mukesh': {
           interestList: ['Sport', 'Restaurent']
@@ -116,7 +118,7 @@
       $http({
         method: 'GET',
         url: apiRoot + "/banks/1.0/bank/atm/zip/0367",
-        headers: {'Authorization': 'Bearer 67e6636a-75d1-3c01-8742-617f7a32ce3d'}
+        headers: {'Authorization': 'Bearer ' + token}
       })
         .then(function (response) {
           console.log(response);
@@ -199,7 +201,19 @@
         dialog.close();
         $timeout(function () {
           $scope.currentDeal.bought = true;
-          // TODO : Do transaction using
+          // TODO : Do transaction using payments API
+          $http({
+            method: 'PUT',
+            url: apiRoot + "/payments/1.0/payment",
+            headers: {'Authorization': 'Bearer ' + token},
+            body : {
+              "debitAccountNumber": $scope.userObj.accNum,
+              "creditAccountNumber": $scope.currentDeal.accNum,
+              "amount": $scope.currentDeal.price,
+              "paymentDate": (new Date())
+            }
+          })
+          .then();
           $scope.boughtDeals.push($scope.currentDeal);
         }, 1);
       });
