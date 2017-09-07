@@ -187,6 +187,10 @@
         dialog.showModal();
       };
 
+      $scope.showHistory = function () {
+        $scope.deals = $scope.boughtDeals;
+      }
+
       dialog.querySelector('.close').addEventListener('click', function () {
         dialog.close();
       });
